@@ -1,0 +1,15 @@
+nginx:
+  build: images/nginx
+  command: nginx -g "daemon off;"
+  links:
+    - php
+  ports:
+    - "80:80"
+php:
+  build: images/php
+  volumes:
+    - .:/app
+  working_dir: /app/public
+  command: php-fpm
+  ports:
+    - "9000:9000"
